@@ -30,6 +30,7 @@ def load_folders():
 def give_folder(selectedfolder):
     global CURRENT_IMAGE_FOLDER
     global PATH_TO_JSON
+    global selected_folder
     selected_folder = selectedfolder
     CURRENT_IMAGE_FOLDER = os.path.join(PATH_TO_IMAGE_FOLDER, selected_folder)
     PATH_TO_JSON = os.path.join(DATABASE_DIR, selected_folder, "image_pool.json")
