@@ -11,10 +11,17 @@
 <body>
     <h1>Welcome to the PNG Voting System</h1>
     <p>Please select your role:</p>
+
+    <label for="folderDropdown">Select a Folder:</label>
+    <select id="folderDropdown" onchange="changeFolder(this.value)">
+        {% for folder in folder_options %}
+            <option value="{{ folder }}">{{ folder }}</option>
+        {% endfor %}
+    </select>
     
     <button id="voter-button">Voter</button>
     <button id="viewer-button">Viewer</button>
 
-    <script src="{{ url_for('static', filename='js/index.js') }}"></script>
 </body>
+<script src="{{ url_for('static', filename='js/index.js') }}"></script>
 </html>

@@ -2,9 +2,6 @@
 
 from imageLoadReadWrite import load_image_scores, get_sorted_images
 
-sorted_images = get_sorted_images()
-
-
 
 def get_highest_rated_image():
     image_scores = load_image_scores()
@@ -13,6 +10,7 @@ def get_highest_rated_image():
 
 
 def get_next_highest_rated_image(currentImage):
+    sorted_images = get_sorted_images()
     if currentImage in sorted_images:
         index = sorted_images.index(currentImage)
         if index + 1 < len(sorted_images):
@@ -22,8 +20,7 @@ def get_next_highest_rated_image(currentImage):
 
 
 def get_previous_highest_rated_image(currentImage):
-    print("here4")
-
+    sorted_images = get_sorted_images()
     if currentImage in sorted_images:
         index = sorted_images.index(currentImage)
         if index - 1 >= 0:

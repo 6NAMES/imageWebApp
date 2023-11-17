@@ -1,2 +1,13 @@
 .DS_Store
 .venv
+__pycache__
+static/.DS_Store
+.idea/inspectionProfiles/Project_Default.xml
+.idea/inspectionProfiles/profiles_settings.xml
+.idea/workspace.xml
+.idea/vcs.xml
+.idea/modules.xml
+.idea/misc.xml
+.idea/imageWebApp.iml
+static/.DS_Store
+static/.DS_Store

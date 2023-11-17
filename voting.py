@@ -11,14 +11,10 @@ RATING_DIFF_FACTOR = 500
 
 # List to keep track of available image files
 displayed_images = set()
-image_pool = load_image_pool()
-
 
 def select_image_pair():
     global image_pool
-
-    if len(image_pool) < 2:
-        image_pool = load_image_pool()  # Reload the image pool if there are not enough images
+    image_pool = load_image_pool()
 
     # Select two random images from the pool
     image1 = random.choice(image_pool)
