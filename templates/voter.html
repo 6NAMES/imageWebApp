@@ -1,0 +1,26 @@
+<!-- voter.html -->
+
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Voting App</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/voter.css') }}">
+</head>
+
+<body>
+    <h1>Vote for Your Favorite Image</h1>
+    <div>
+        <img id="image1" src="{{ url_for('static', filename=image_path + '/' + image1) }}">
+        <button onclick="vote('image1', 'image2', '{{ image_path }}')">Vote for Image 1</button>
+    </div>
+
+    <div>
+        <img id="image2" src="{{ url_for('static', filename=image_path + '/' + image2) }}">
+        <button onclick="vote('image2', 'image1', '{{ image_path }}')">Vote for Image 2</button>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="{{ url_for('static', filename='js/voter.js') }}"></script>
+</body>
+</html>

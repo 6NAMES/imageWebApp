@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Viewer</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/viewer.css') }}">
+</head>
+<body>
+    <div>
+        <img id="current_image" src="{{ url_for('static', filename='images/imagez/' + current_image) }}">
+    </div>
+
+    <div id="navigation">
+        <button id="prev-button" onclick="prevImage('{{ current_image }}')">Previous</button>
+        <button id="next-button" onclick="nextImage('{{ current_image }}')">Next</button>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="{{ url_for('static', filename='js/viewer.js') }}"></script>
+</body>
+</html>
+
+
