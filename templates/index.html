@@ -10,18 +10,22 @@
 </head>
 <body>
     <h1>Welcome to the PNG Voting System</h1>
-    <p>Please select your role:</p>
+    <h3>Please select your role:</h3>
 
-    <label for="folderDropdown">Select a Folder:</label>
-    <select id="folderDropdown" onchange="changeFolder(this.value)">
-        {% for folder in folder_options %}
-            <option value="{{ folder }}">{{ folder }}</option>
-        {% endfor %}
-    </select>
-    
     <button id="voter-button">Voter</button>
     <button id="viewer-button">Viewer</button>
 
+    <div class="radio-section">
+        <h3>Pick a File:</h3>
+        <div class="radio-container">
+            {% for folder in folder_options %}
+                <div class="radio-item">
+                    <input type="radio" id="{{ folder }}" name="folderRadio" value="{{ folder }}" onchange="changeFolder(this.value)">
+                    <label for="{{ folder }}">{{ folder }}</label>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
 </body>
 <script src="{{ url_for('static', filename='js/index.js') }}"></script>
 </html>

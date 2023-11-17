@@ -12,10 +12,10 @@ app = Flask(__name__)
 # Initializers
 current_images = {'image1': None, 'image2': None}
 
-
 # Route to leading page on start up
 @app.route('/')
 def index():
+    global folder_options
     folder_options = load_folders()
     return render_template('index.html', folder_options=folder_options)
     # TODO on the index page we scan all folders in images and have a drop down for someone to pick wich folder they want to use

@@ -8,6 +8,12 @@ body {
     margin: 0;
     padding: 20px;
     box-sizing: border-box;
+    background-color: #1d0f0f;
+
+}
+
+h1 {
+    color: rgb(255, 255, 255);
 }
 
 div {
@@ -24,7 +30,7 @@ img {
 
 button {
     padding: 10px;
-    font-size: 16px;
+    font-size: 30px;
     cursor: pointer;
     background-color: #3498db;
     color: #fff;

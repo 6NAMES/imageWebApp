@@ -1,21 +1,64 @@
 /* index.css */
 
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: 'Calibri', sans-serif;
     text-align: center;
     margin: 50px;
+    background-color: #1d0f0f;
 }
 
 h1 {
-    color: #333;
+    color: rgb(255, 255, 255);
+}
+
+h3 {
+    color: rgb(255, 255, 255);
+}
+
+label {
+    display: block;
+    margin-bottom: 15px;
+    font-size: 18px; /* Adjust font size */
 }
 
 button {
+    margin-top: 10px;
+    margin-bottom: 40px; /* Add margin to create space between buttons and radio buttons */
     padding: 10px;
-    font-size: 16px;
+    font-size: 22px;
     cursor: pointer;
     background-color: #3498db;
     color: #fff;
     border: none;
     border-radius: 5px;
+}
+
+.radio-section {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.radio-container {
+    display: flex;
+    align-items: center;
+}
+
+.radio-item {
+    margin-top: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.radio-item label {
+    color: #fff;
+    margin-left: 5px; /* Adjust the left margin to space the dot from the filename */
+}
+
+input[type="radio"] {
+    margin-top: 5px;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    transform: scale(1.5);
 }
