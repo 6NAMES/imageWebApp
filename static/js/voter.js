@@ -6,8 +6,8 @@ function vote(winImage, loseImage, image_path) {
         type: "POST",
         data: { win_img: winImage, lose_img: loseImage},
         success: function(response) {
-            $('#image1').attr('src', '/static/images' + image_path + '/' + response.image1);
-            $('#image2').attr('src', '/static/images' + image_path + '/' + response.image2);
+            $('#image1').attr('src', '/static/' + image_path + '/' + response.image1);
+            $('#image2').attr('src', '/static/' + image_path + '/' + response.image2);
         }
     });
 }

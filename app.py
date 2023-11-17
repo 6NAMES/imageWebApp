@@ -5,7 +5,7 @@ from voting import select_image_pair, score_elo
 from viewer import get_highest_rated_image, get_next_highest_rated_image, get_previous_highest_rated_image
 from imageLoadReadWrite import write_image_json, load_image_pool, load_folders, give_folder
 from flask import Flask, render_template, request, jsonify
-import os
+
 
 app = Flask(__name__)
 
@@ -29,9 +29,10 @@ def update_folder():
     data = request.get_json()
     selected_folder = data.get('folder')
     give_folder(selected_folder)
-    global CURRENT_IMAGE_FOLDER
+    global CURRENT_IMAGE_PATH
     global PATH_TO_JSON
-    from imageLoadReadWrite import CURRENT_IMAGE_FOLDER, PATH_TO_JSON
+    global CURRENT_IMAGE_FOLDER
+    from imageLoadReadWrite import CURRENT_IMAGE_PATH, PATH_TO_JSON, CURRENT_IMAGE_FOLDER
     write_image_json()
     
     # You can now use the updated values outside the function
@@ -48,7 +49,8 @@ def voter():
     selected_folder = CURRENT_IMAGE_FOLDER
     image1, image2 = select_image_pair()
     current_images['image1'] = image1
-    current_images['image2'] = image2    
+    current_images['image2'] = image2
+    print(selected_folder)
     return render_template('voter.html', image1=image1, image2=image2, image_path=selected_folder)
 
 

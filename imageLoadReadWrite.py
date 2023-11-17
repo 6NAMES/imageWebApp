@@ -9,6 +9,7 @@ import json
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 PATH_TO_IMAGE_FOLDER = os.path.join("static", "images")
+IMAGE_FOLDER = ("images/")
 DATABASE_DIR = os.path.join(BASE_DIR, "database")
 IMAGE_EXTENSION = '.png'
 
@@ -29,15 +30,17 @@ def load_folders():
 
 def give_folder(selectedfolder):
     global CURRENT_IMAGE_FOLDER
+    global CURRENT_IMAGE_PATH
     global PATH_TO_JSON
     global selected_folder
     selected_folder = selectedfolder
-    CURRENT_IMAGE_FOLDER = os.path.join(PATH_TO_IMAGE_FOLDER, selected_folder)
+    CURRENT_IMAGE_PATH = os.path.join(PATH_TO_IMAGE_FOLDER, selected_folder)
     PATH_TO_JSON = os.path.join(DATABASE_DIR, selected_folder, "image_pool.json")
+    CURRENT_IMAGE_FOLDER = os.path.join(IMAGE_FOLDER, selected_folder)
     
 
 def load_image_pool():
-    image_pool = [image for image in os.listdir(CURRENT_IMAGE_FOLDER) if image.endswith(IMAGE_EXTENSION)]
+    image_pool = [image for image in os.listdir(CURRENT_IMAGE_PATH) if image.endswith(IMAGE_EXTENSION)]
     return image_pool
 
 
