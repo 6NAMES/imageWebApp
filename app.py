@@ -1,7 +1,7 @@
 # app.py
 
 # Imports
-from voting import select_image_pair, score_elo
+from voting import select_image_pair, score_elo, get_score
 from viewer import sort_images, get_next_image, get_first_image, get_previous_image
 from imageLoadReadWrite import write_image_json, load_image_pool, load_folders, give_folder
 from flask import Flask, render_template, request, jsonify
@@ -62,20 +62,22 @@ def vote():
 def viewer():
     sort_images()
     current_image = get_first_image()
-    return render_template('viewer.html', current_image=current_image, image_path=CURRENT_IMAGE_FOLDER)
-# TODO add the score on the viewer for each current_image
+    score = get_score(current_image)
+    return render_template('viewer.html', current_image=current_image, image_path=CURRENT_IMAGE_FOLDER, score=score)
 
 # function call next
 @app.route('/next', methods=['POST'])
 def next():
     next_image = get_next_image()
-    return jsonify({'current_image': next_image, 'image_path': CURRENT_IMAGE_FOLDER})
+    score = get_score(next_image)
+    return jsonify({'current_image': next_image, 'image_path': CURRENT_IMAGE_FOLDER, 'score':score})
 
 # function call next
 @app.route('/previous', methods=['POST'])
 def previous():
     previous_image = get_previous_image()
-    return jsonify({'current_image': previous_image, 'image_path': CURRENT_IMAGE_FOLDER})
+    score = get_score(previous_image)
+    return jsonify({'current_image': previous_image, 'image_path': CURRENT_IMAGE_FOLDER, 'score':score})
 
 
 # TODO add new page, image elimination, here we pick the Bottom, 10% of scors, we display them in acending order and ask wether the img should be kept or not, if not, then we dealte the imgage from the image_pool and from the image file.

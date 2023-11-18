@@ -15,10 +15,11 @@ def sort_images():
 # This just gets the first img for the viewr page, it would be the Highest rated, so we just get index 0 of sorted_images_list
 def get_first_image():
     global sorted_images_list_cur_index
+    
     if len(sorted_images_list) > 0:
         sorted_images_list_cur_index = 0
         return sorted_images_list[0]
-    
+
 
 # This usees a global index (sorted_images_list_cur_index) and it is in sorted_images_list, and then Increments in the list for one in returns the item(png name) For that index
 def get_next_image():
@@ -37,7 +38,6 @@ def get_next_image():
 def get_previous_image():
     global sorted_images_list_cur_index
 
-    print(sorted_images_list_cur_index)
     if sorted_images_list_cur_index > 0:
         sorted_images_list_cur_index -= 1
         return sorted_images_list[sorted_images_list_cur_index]

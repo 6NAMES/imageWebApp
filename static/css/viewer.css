@@ -2,22 +2,28 @@
 
 body {
     display: flex;
-    justify-content: center;
+    flex-direction: column; /* Stack elements vertically */
     align-items: center;
     height: 100vh;
     margin: 0;
     overflow: hidden;
     background-color: #1d0f0f;
-
+    padding: 20px;
 }
 
-h1 {
+#viewer-container {
+    text-align: center; /* Center text within the container */
+}
+
+h2 {
     color: rgb(255, 255, 255);
 }
 
 img {
     max-width: 100%;
-    max-height: 100%;
+    max-height: 80vh;
+    border: 2px solid #333;
+    border-radius: 5px;
 }
 
 #navigation {

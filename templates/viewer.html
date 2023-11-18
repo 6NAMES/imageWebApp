@@ -8,7 +8,8 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/viewer.css') }}">
 </head>
 <body>
-    <div>
+    <div id="viewer-container">
+        <h2 id="score">Score: {{ score }}</h2>
         <img id="current_image" src="{{ url_for('static', filename=image_path + '/' + current_image) }}">
     </div>
 
