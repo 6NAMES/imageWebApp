@@ -2,9 +2,9 @@
 
 # Imports
 from voting import select_image_pair, score_elo
-from viewer import get_highest_rated_image, get_next_highest_rated_image, get_previous_highest_rated_image
+from viewer import sort_images, get_next_image, get_first_image
 from imageLoadReadWrite import write_image_json, load_image_pool, load_folders, give_folder
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, url_for
 
 
 app = Flask(__name__)
@@ -46,12 +46,10 @@ def update_folder():
 def voter():
     global image_pool
     image_pool = load_image_pool()
-    selected_folder = CURRENT_IMAGE_FOLDER
     image1, image2 = select_image_pair()
     current_images['image1'] = image1
     current_images['image2'] = image2
-    print(selected_folder)
-    return render_template('voter.html', image1=image1, image2=image2, image_path=selected_folder)
+    return render_template('voter.html', image1=image1, image2=image2, image_path=CURRENT_IMAGE_FOLDER)
 
 
 # function call vote
@@ -64,42 +62,25 @@ def vote():
 
     # Get two new random images for the next vote
     image1, image2 = select_image_pair()
-
     current_images['image1'] = image1
     current_images['image2'] = image2
-
     return jsonify({'image1': image1, 'image2': image2})
 
 
 # Route to viewer page
 @app.route('/viewer')
 def displayer():
-    selected_folder = request.args.get('folder', default=None)
-    print("selected_folder", selected_folder)
-    current_image = get_highest_rated_image()
-    return render_template('viewer.html', current_image=current_image)
+    sort_images()
+    first_image = get_first_image()
+    image_path = CURRENT_IMAGE_FOLDER
+    return render_template('viewer.html', current_image=first_image, image_path=image_path)
 
 # function call next
 @app.route('/next', methods=['POST'])
 def next():
-    # Assuming you need to pass the current image to get the next one
-    current_image = request.form.get('current_image')  # Adjust this based on your HTML/JS structure
-    next_image = get_next_highest_rated_image(current_image)
-    
-    current_image = next_image
-
-    return jsonify({'current_image': current_image})
-
-# function call previous
-@app.route('/previous', methods=['POST'])
-def previous():
-    print("here2")
-    # Assuming you need to pass the current image to get the previous one
-    current_image = request.form.get('current_image')  # Adjust this based on your HTML/JS structure
-    print(current_image)
-    previous_image = get_previous_highest_rated_image(current_image)
-    print(previous_image)
-    return jsonify({'current_image': previous_image})
+    next_image = get_next_image()
+    image_path = CURRENT_IMAGE_FOLDER
+    return jsonify({'current_image': next_image, 'image_path': image_path})
 
 
 # TODO add new page, image elimination, here we pick the Bottom, 10% of scors, we display them in acending order and ask wether the img should be kept or not, if not, then we dealte the imgage from the image_pool and from the image file.

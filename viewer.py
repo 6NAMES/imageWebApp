@@ -1,28 +1,34 @@
 # viewer.py
 
-from imageLoadReadWrite import load_image_scores, get_sorted_images
+from imageLoadReadWrite import load_image_scores
 
 
-def get_highest_rated_image():
+# this gets all rated imges in image_pool.json, and puts there keys(the png names) in descending order a list, set as a global so other functions in this file can call it
+def sort_images():
     image_scores = load_image_scores()
-    highest_rated_image = max(image_scores, key=image_scores.get, default=None)
-    return highest_rated_image
+    sorted_dict_desc = dict(sorted(image_scores.items(), key=lambda item: item[1], reverse=True))
+    global sorted_images_list
+    sorted_images_list = list(sorted_dict_desc.keys())
+    print(sorted_images_list)
 
 
-def get_next_highest_rated_image(currentImage):
-    sorted_images = get_sorted_images()
-    if currentImage in sorted_images:
-        index = sorted_images.index(currentImage)
-        if index + 1 < len(sorted_images):
-            return sorted_images[index + 1]
-        else:
-            return None
+# This just gets the first img for the viewr page, it would be the Highest rated, so we just get index 0 of sorted_images_list
+def get_first_image():
+    global sorted_images_list_cur_index
+    if len(sorted_images_list) > 0:
+        sorted_images_list_cur_index = 0
+        return sorted_images_list[0]
+    
 
+# This takes a currentimage and gets the index it is in sorted_images_list, and then Increments in the list for one in returns the item(png name) For that index
+def get_next_image():
+    global sorted_images_list_cur_index
 
-def get_previous_highest_rated_image(currentImage):
-    sorted_images = get_sorted_images()
-    if currentImage in sorted_images:
-        index = sorted_images.index(currentImage)
-        if index - 1 >= 0:
-            return sorted_images[index - 1]
-    return None
+    cur_index = sorted_images_list_cur_index
+
+    if cur_index < len(sorted_images_list):
+        sorted_images_list_cur_index += 1
+        return sorted_images_list[sorted_images_list_cur_index]
+    else:
+        sorted_images_list_cur_index = 0
+        raise IndexError("End of list, out of index. (viewer.get_next_image)")
