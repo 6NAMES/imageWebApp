@@ -12,3 +12,5 @@ static/.DS_Store
 database/test2_imgs/image_pool.json
 database/test_img/image_pool.json
 static/images/imagez
+static/clips
+static/.DS_Store
