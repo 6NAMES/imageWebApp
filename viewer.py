@@ -20,15 +20,27 @@ def get_first_image():
         return sorted_images_list[0]
     
 
-# This takes a currentimage and gets the index it is in sorted_images_list, and then Increments in the list for one in returns the item(png name) For that index
+# This usees a global index (sorted_images_list_cur_index) and it is in sorted_images_list, and then Increments in the list for one in returns the item(png name) For that index
 def get_next_image():
     global sorted_images_list_cur_index
 
-    cur_index = sorted_images_list_cur_index
-
-    if cur_index < len(sorted_images_list):
+    if sorted_images_list_cur_index < len(sorted_images_list) - 1:
         sorted_images_list_cur_index += 1
+        print(sorted_images_list_cur_index)
         return sorted_images_list[sorted_images_list_cur_index]
     else:
         sorted_images_list_cur_index = 0
-        raise IndexError("End of list, out of index. (viewer.get_next_image)")
+        return sorted_images_list[sorted_images_list_cur_index]
+
+
+# This usees a global index (sorted_images_list_cur_index) and it is in sorted_images_list, and then Increments in the list for one in returns the item(png name) For that index
+def get_previous_image():
+    global sorted_images_list_cur_index
+
+    print(sorted_images_list_cur_index)
+    if sorted_images_list_cur_index > 0:
+        sorted_images_list_cur_index -= 1
+        return sorted_images_list[sorted_images_list_cur_index]
+    else:
+        sorted_images_list_cur_index = len(sorted_images_list) - 1
+        return sorted_images_list[sorted_images_list_cur_index]

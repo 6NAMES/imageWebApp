@@ -65,26 +65,6 @@ def save_image_scores(image_scores):
         print(f"Error saving image scores: {e}")
 
 
-def get_sorted_images():
-    try:
-        with open(PATH_TO_JSON, "r") as file:
-            image_scores = json.load(file)
-    except FileNotFoundError:
-        # Handle the case when the file is not found
-        return []
-
-    # Create a list of tuples (image_path, score)
-    image_tuples = [(image_path, image_scores[image_path]) for image_path in image_scores]
-
-    # Sort the list of tuples by score in descending order
-    sorted_images = sorted(image_tuples, key=lambda x: x[1], reverse=True)
-
-    # Extract only the image paths from the sorted list
-    sorted_image_paths = [image_path for image_path, _ in sorted_images]
-
-    return sorted_image_paths
-
-
 # if there is no image_pool this makes one
 def write_image_json():
     # Check if the image scores file exists
