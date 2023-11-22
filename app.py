@@ -81,6 +81,8 @@ def previous():
 
 
 # TODO add new page, image elimination, here we pick the Bottom, 10% of scors, we display them in acending order and ask wether the img should be kept or not, if not, then we dealte the imgage from the image_pool and from the image file.
+# TODO add it only votes on pngs that have not been voted on, so mabby i have a vote cont, think about this, it could relly limit what phots go agist but maby it gets everthing on the same vote count, we can add a vote count in the json baby, or mabby a new json with the vote cont as the item and the png name as the key
+
 
 if __name__ == "__main__":
     #run app
