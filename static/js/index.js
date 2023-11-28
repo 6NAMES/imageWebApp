@@ -3,6 +3,8 @@
 const voterButton = document.getElementById('voter-button');
 const viewerButton = document.getElementById('viewer-button');
 const folderDropdown = document.getElementById('folderDropdown');
+const eliminationButton = document.getElementById('elimination-button');
+
 
 
 voterButton.addEventListener('click', () => {
@@ -13,6 +15,10 @@ voterButton.addEventListener('click', () => {
 viewerButton.addEventListener('click', () => {
     // Redirect to the viewer route
     window.location.href = '/viewer';
+});
+
+eliminationButton.addEventListener('click', () => {
+    window.location.href = '/elimination';
 });
 
 function changeFolder(selectedFolder) {
