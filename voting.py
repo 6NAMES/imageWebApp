@@ -14,13 +14,21 @@ displayed_images = set()
 
 def select_image_pair(image_pool):
 
-    # Select two random images from the pool
-    image1 = random.choice(image_pool)
-    image_pool.remove(image1)  # Remove the selected image from the pool
-    image2 = random.choice(image_pool)
-    image_pool.remove(image2)
-
-    return image1, image2
+    if len(image_pool) >= 2:
+        # Select two random images from the pool
+        image1 = random.choice(image_pool)
+        image_pool.remove(image1)  # Remove the selected image from the pool
+        image2 = random.choice(image_pool)
+        image_pool.remove(image2)
+        return image1, image2
+    else:
+        image_pool = load_image_pool()
+        # Select two random images from the pool
+        image1 = random.choice(image_pool)
+        image_pool.remove(image1)  # Remove the selected image from the pool
+        image2 = random.choice(image_pool)
+        image_pool.remove(image2)
+        return image1, image2
 
 
 def get_score(image):
