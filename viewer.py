@@ -9,7 +9,6 @@ def sort_images():
     sorted_dict_desc = dict(sorted(image_scores.items(), key=lambda item: item[1], reverse=True))
     global sorted_images_list
     sorted_images_list = list(sorted_dict_desc.keys())
-    print(sorted_images_list)
 
 
 # This just gets the first img for the viewr page, it would be the Highest rated, so we just get index 0 of sorted_images_list
@@ -27,7 +26,6 @@ def get_next_image():
 
     if sorted_images_list_cur_index < len(sorted_images_list) - 1:
         sorted_images_list_cur_index += 1
-        print(sorted_images_list_cur_index)
         return sorted_images_list[sorted_images_list_cur_index]
     else:
         sorted_images_list_cur_index = 0

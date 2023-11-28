@@ -21,12 +21,11 @@ def load_folders():
         folders = [entry for entry in entries if os.path.isdir(os.path.join(PATH_TO_IMAGE_FOLDER, entry))]
         folders.sort()
         folder_options = folders
-
     except Exception as e:
-        # Handle exceptions based on your needs
         print(f"Error reading folders: {e}")
 
     return folder_options
+
 
 def give_folder(selectedfolder):
     global CURRENT_IMAGE_FOLDER

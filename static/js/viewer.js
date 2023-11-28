@@ -4,7 +4,8 @@ let current_image = '{{ current_image }}'; // Make sure to set the initial value
 
 function updateImage(response) {
     console.log('Current Image:', current_image);  // Log the current_image to the console
-    $('#current_image').attr('src', '/static/' + response.image_path + '/' + response.current_image);
+    const imagePath = '/static/' + response.image_path + '/';
+    $('#current_image').attr('src', imagePath + response.current_image);
     updateScore(response.score); // Call the function to update the score
 }
 
@@ -12,24 +13,24 @@ function updateScore(score) {
     $('#score').text('Score: ' + score); // Update the text content of the score element
 }
 
-function nextImage() {
+function loadImage(url, successCallback) {
     $.ajax({
-        url: "/next",
+        url: url,
         type: "POST",
-        success: function (response) {
-            console.log('Success! Response:', response); // Log the response to the console
-            updateImage(response);
-        },
+        success: successCallback,
+    });
+}
+
+function nextImage() {
+    loadImage("/next", function (response) {
+        console.log('Success! Response:', response); // Log the response to the console
+        updateImage(response);
     });
 }
 
 function previousImage() {
-    $.ajax({
-        url: "/previous",
-        type: "POST",
-        success: function (response) {
-            console.log('Success! Response:', response); // Log the response to the console
-            updateImage(response);
-        },
+    loadImage("/previous", function (response) {
+        console.log('Success! Response:', response); // Log the response to the console
+        updateImage(response);
     });
 }

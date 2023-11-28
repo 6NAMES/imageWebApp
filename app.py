@@ -56,7 +56,6 @@ def vote():
     current_images['image2'] = image2
     return jsonify({'image1': image1, 'image2': image2})
 
-
 # Route to viewer page
 @app.route('/viewer')
 def viewer():

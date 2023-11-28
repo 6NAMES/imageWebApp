@@ -22,5 +22,17 @@
 
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="{{ url_for('static', filename='js/voter.js') }}"></script>
+    <script>
+        // Listen for keypress events
+        document.addEventListener('keydown', function(event) {
+            if (event.key === '1') {
+                // Pressed '1' key, vote for Image 1
+                vote('image1', 'image2', '{{ image_path }}');
+            } else if (event.key === '2') {
+                // Pressed '2' key, vote for Image 2
+                vote('image2', 'image1', '{{ image_path }}');
+            }
+        });
+    </script>
 </body>
 </html>
