@@ -40,7 +40,7 @@ def update_folder():
 def voter():
     global image_pool
     image_pool = load_image_pool()
-    image1, image2 = select_image_pair()
+    image1, image2 = select_image_pair(image_pool)
     current_images['image1'] = image1
     current_images['image2'] = image2
     return render_template('voter.html', image1=image1, image2=image2, image_path=CURRENT_IMAGE_FOLDER)
@@ -52,7 +52,7 @@ def vote():
     lose_img = request.form['lose_img']
     score_elo(current_images[win_img], current_images[lose_img])
     # Get two new random images for the next vote
-    image1, image2 = select_image_pair()
+    image1, image2 = select_image_pair(image_pool)
     current_images['image1'] = image1
     current_images['image2'] = image2
     return jsonify({'image1': image1, 'image2': image2})

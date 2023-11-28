@@ -12,9 +12,7 @@ RATING_DIFF_FACTOR = 500  # Factor controlling the sensitivity of the Elo rating
 # List to keep track of available image files
 displayed_images = set()
 
-def select_image_pair():
-    global image_pool
-    image_pool = load_image_pool()
+def select_image_pair(image_pool):
 
     # Select two random images from the pool
     image1 = random.choice(image_pool)
