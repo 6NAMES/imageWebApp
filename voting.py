@@ -6,8 +6,8 @@ from imageLoadReadWrite import load_image_pool, load_image_scores, save_image_sc
 
 # Constants
 DEFAULT_SCORE = 1000  # Default score assigned to images if no score is available
-K_FACTOR = 20        # Weight factor determining the impact of each game on a png's score
-RATING_DIFF_FACTOR = 500  # Factor controlling the sensitivity of the Elo rating system to score differences
+K_FACTOR = 40        # Weight factor determining the impact of each game on a png's score
+RATING_DIFF_FACTOR = 150  # Factor controlling the sensitivity of the Elo rating system to score differences
 
 # List to keep track of available image files
 displayed_images = set()
@@ -40,11 +40,8 @@ def get_score(image):
 def update_image_scores(win_img, win_img_score, lose_img, lose_img_score):
     image_scores = load_image_scores()
 
-    #image_scores[win_img] = win_img_score
-    #image_scores[lose_img] = lose_img_score
-
-    image_scores[win_img] = 1000
-    image_scores[lose_img] = 1000
+    image_scores[win_img] = win_img_score
+    image_scores[lose_img] = lose_img_score
 
     save_image_scores(image_scores)
 
