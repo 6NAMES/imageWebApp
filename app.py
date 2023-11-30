@@ -4,7 +4,7 @@
 from voting import select_image_pair, score_elo, get_score
 from viewer import sort_images, get_next_image, get_first_image, get_previous_image
 from imageLoadReadWrite import write_image_json, load_image_pool, load_folders, give_folder
-from elimination import get_bottom_10_percent_scores, delete_image_logic
+#from elimination import 
 from flask import Flask, render_template, request, jsonify
 
 
@@ -80,23 +80,17 @@ def previous():
     return jsonify({'current_image': previous_image, 'image_path': CURRENT_IMAGE_FOLDER, 'score':score})
 
 
+# Route to elimination page
 @app.route('/elimination')
 def elimination():
-    # Implement logic to get the bottom 10% of scores
-    bottom_10_percent = get_bottom_10_percent_scores()
-    return render_template('elimination.html', bottom_10_percent=bottom_10_percent, image_path=CURRENT_IMAGE_FOLDER)
+    sort_images()
+    current_image = get_first_image()
+    score = get_score(current_image)
+    return render_template('elimination.html', current_image=current_image, image_path=CURRENT_IMAGE_FOLDER, score=score)
 
-@app.route('/delete_image', methods=['POST'])
-def delete_image():
-    image_to_delete = request.form['image']
-    print(image_to_delete)
-
-    # Call the function to handle the image deletion
-    delete_image_logic(image_to_delete)
-
-    response_data = {'message': 'Image deleted successfully'}
-    return jsonify(response_data)
-
+@app.route('/delete/<filename>', methods=['DELETE'])
+def delete_file(filename):
+    pass
 
 
 # TODO add it only votes on pngs that have not been voted on, so mabby i have a vote cont, think about this, it could relly limit what phots go agist but maby it gets everthing on the same vote count, we can add a vote count in the json baby, or mabby a new json with the vote cont as the item and the png name as the key

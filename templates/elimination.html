@@ -5,21 +5,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Image Elimination</title>
+    <title>Image Eliminator</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/elimination.css') }}">
 </head>
 <body>
-    <h1>Image Elimination</h1>
-    <div>
-        <!-- Display the bottom 10% of scores in ascending order -->
-        {% for image in bottom_10_percent %}
-            <div>
-                <img src="{{ url_for('static', filename=image_path + '/' + image) }}">
-                <button onclick="keepImage()">Keep</button>
-                <button onclick="deleteImage('image')">Delete</button>
-            </div>
-        {% endfor %}
+    <div id="viewer-container">
+        <h2 id="score">Score: {{ score }}</h2>
+        <img id="current_image" src="{{ url_for('static', filename=image_path + '/' + current_image) }}">
     </div>
+
+    <div id="navigation">
+        <button id="previous-button" onclick="previousImage()">Previous</button>
+        <button id="next-button" onclick="nextImage()">Next</button>
+        <button id="delete-button" onclick="deleteImage()">Delete</button>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="{{ url_for('static', filename='js/elimination.js') }}"></script>
 </body>
 </html>

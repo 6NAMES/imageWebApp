@@ -20,17 +20,5 @@
 
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="{{ url_for('static', filename='js/viewer.js') }}"></script>
-    <script>
-        // Listen for keypress events
-        document.addEventListener('keydown', function(event) {
-            if (event.key === 'ArrowRight') {
-                // Pressed 'ArrowLeft' key, go to next image
-                nextImage();
-            } else if (event.key === 'ArrowLeft') {
-                // Pressed 'ArrowRight' key, go to previous image
-                previousImage();
-            }
-        });
-    </script>
 </body>
 </html>

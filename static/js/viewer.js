@@ -34,3 +34,14 @@ function previousImage() {
         updateImage(response);
     });
 }
+
+// Listen for keypress events
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'ArrowRight') {
+        // Pressed 'ArrowLeft' key, go to next image
+        nextImage();
+    } else if (event.key === 'ArrowLeft') {
+        // Pressed 'ArrowRight' key, go to previous image
+        previousImage();
+    }
+});
