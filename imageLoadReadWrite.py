@@ -9,6 +9,7 @@ import json
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 PATH_TO_IMAGE_FOLDER = os.path.join("static", "images")
+PATH_TO_STATIC = ("static")
 IMAGE_FOLDER = ("images/")
 DATABASE_DIR = os.path.join(BASE_DIR, "database")
 IMAGE_EXTENSION = '.png'

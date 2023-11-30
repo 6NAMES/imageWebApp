@@ -1,44 +1,33 @@
 # elimination.py
 
-from imageLoadReadWrite import load_image_scores
+from imageLoadReadWrite import BASE_DIR, PATH_TO_STATIC
+import os
+import json
 
 
-# this gets all rated imges in image_pool.json, and puts there keys(the png names) in descending order a list, set as a global so other functions in this file can call it
-def sort_images():
-    image_scores = load_image_scores()
-    sorted_dict_desc = dict(sorted(image_scores.items(), key=lambda item: item[1], reverse=True))
-    global sorted_images_list
-    sorted_images_list = list(sorted_dict_desc.keys())
+def delete_image(image_name, PATH_TO_JSON, CURRENT_IMAGE_FOLDER):
+    json_path = os.path.join(PATH_TO_JSON)
+    image_path = os.path.join(BASE_DIR, PATH_TO_STATIC, CURRENT_IMAGE_FOLDER, image_name)
+    key_to_delete = image_name
 
+    # Check if the image file exists
+    if os.path.exists(image_path):
+        # Remove the image file
+        os.remove(image_path)
 
-# This just gets the first img for the viewr page, it would be the Highest rated, so we just get index 0 of sorted_images_list
-def get_first_image():
-    global sorted_images_list_cur_index
+    # Read the JSON file
+    with open(json_path, 'r') as json_file:
+        data = json.load(json_file)
+
+    if key_to_delete in data:
+        del data[key_to_delete]
+
+        # Write the updated data back to the JSON file
+        with open(json_path, 'w') as json_file:
+            json.dump(data, json_file, indent=4)
+    else:
+        print(f'Key {key_to_delete} not found in the JSON file.')
+
     
-    if len(sorted_images_list) > 0:
-        sorted_images_list_cur_index = 0
-        return sorted_images_list[0]
 
-
-# This usees a global index (sorted_images_list_cur_index) and it is in sorted_images_list, and then Increments in the list for one in returns the item(png name) For that index
-def get_next_image():
-    global sorted_images_list_cur_index
-
-    if sorted_images_list_cur_index < len(sorted_images_list) - 1:
-        sorted_images_list_cur_index += 1
-        return sorted_images_list[sorted_images_list_cur_index]
-    else:
-        sorted_images_list_cur_index = 0
-        return sorted_images_list[sorted_images_list_cur_index]
-
-
-# This usees a global index (sorted_images_list_cur_index) and it is in sorted_images_list, and then Increments in the list for one in returns the item(png name) For that index
-def get_previous_image():
-    global sorted_images_list_cur_index
-
-    if sorted_images_list_cur_index > 0:
-        sorted_images_list_cur_index -= 1
-        return sorted_images_list[sorted_images_list_cur_index]
-    else:
-        sorted_images_list_cur_index = len(sorted_images_list) - 1
-        return sorted_images_list[sorted_images_list_cur_index]
+    

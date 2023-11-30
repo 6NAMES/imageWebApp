@@ -2,9 +2,9 @@
 
 # Imports
 from voting import select_image_pair, score_elo, get_score
-from viewer import sort_images, get_next_image, get_first_image, get_previous_image
+from viewer import sort_images, get_next_image, get_first_image, get_previous_image, get_current_image
 from imageLoadReadWrite import write_image_json, load_image_pool, load_folders, give_folder
-#from elimination import 
+from elimination import delete_image
 from flask import Flask, render_template, request, jsonify
 
 
@@ -88,9 +88,14 @@ def elimination():
     score = get_score(current_image)
     return render_template('elimination.html', current_image=current_image, image_path=CURRENT_IMAGE_FOLDER, score=score)
 
-@app.route('/delete/<filename>', methods=['DELETE'])
-def delete_file(filename):
-    pass
+@app.route('/delete', methods=['DELETE'])
+def delete_file():
+    filename = get_current_image()  # Retrieve image name from the POST data
+    print("Deleting file:", filename)
+    delete_image(filename, PATH_TO_JSON, CURRENT_IMAGE_FOLDER)
+
+
+    return 'File deleted successfully.', 200  # You can customize the response if needed
 
 
 # TODO add it only votes on pngs that have not been voted on, so mabby i have a vote cont, think about this, it could relly limit what phots go agist but maby it gets everthing on the same vote count, we can add a vote count in the json baby, or mabby a new json with the vote cont as the item and the png name as the key

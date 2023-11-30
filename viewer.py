@@ -42,3 +42,8 @@ def get_previous_image():
     else:
         sorted_images_list_cur_index = len(sorted_images_list) - 1
         return sorted_images_list[sorted_images_list_cur_index]
+
+def get_current_image():
+    global sorted_images_list_cur_index
+    return sorted_images_list[sorted_images_list_cur_index]
+

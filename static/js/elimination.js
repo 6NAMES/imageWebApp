@@ -47,6 +47,18 @@ document.addEventListener('keydown', function(event) {
 });
 
 function deleteImage() {
-
-    console.log("Image deleted!");
+    // Log the image name before making the AJAX request
+    $.ajax({
+        url: '/delete',
+        type: 'DELETE', // Change the HTTP method to DELETE
+        success: function (response) {
+            console.log('Success! Response:', response);
+            // Optionally update the UI or take other actions after successful deletion
+        },
+        error: function (error) {
+            console.error('Error:', error);
+            // Handle errors or provide feedback to the user
+        }
+    });
+    previousImage();
 }

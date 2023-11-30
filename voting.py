@@ -40,8 +40,11 @@ def get_score(image):
 def update_image_scores(win_img, win_img_score, lose_img, lose_img_score):
     image_scores = load_image_scores()
 
-    image_scores[win_img] = win_img_score
-    image_scores[lose_img] = lose_img_score
+    #image_scores[win_img] = win_img_score
+    #image_scores[lose_img] = lose_img_score
+
+    image_scores[win_img] = 1000
+    image_scores[lose_img] = 1000
 
     save_image_scores(image_scores)
 
