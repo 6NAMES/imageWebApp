@@ -11,5 +11,5 @@ static/.DS_Store
 .idea/imageWebApp.iml
 database/test2_imgs/image_pool.json
 database/test_img/image_pool.json
-static/images/imagez
 static/clips
+static/images
