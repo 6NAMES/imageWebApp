@@ -48,11 +48,17 @@ def voter():
 # function call vote
 @app.route('/vote', methods=['POST'])
 def vote():
+    global image_pool
     win_img = request.form['win_img']
     lose_img = request.form['lose_img']
     score_elo(current_images[win_img], current_images[lose_img])
     # Get two new random images for the next vote
-    image1, image2 = select_image_pair(image_pool)
+    if len(image_pool) >= 2:
+        image1, image2 = select_image_pair(image_pool)
+    else:
+        image_pool = load_image_pool()
+        image1, image2 = select_image_pair(image_pool)
+
     current_images['image1'] = image1
     current_images['image2'] = image2
     return jsonify({'image1': image1, 'image2': image2})
