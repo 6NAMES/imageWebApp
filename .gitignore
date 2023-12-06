@@ -9,7 +9,6 @@ static/.DS_Store
 .idea/modules.xml
 .idea/misc.xml
 .idea/imageWebApp.iml
-database/test2_imgs/image_pool.json
-database/test_img/image_pool.json
+database
 static/clips
 static/images
