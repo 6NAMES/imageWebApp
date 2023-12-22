@@ -9,6 +9,6 @@ static/.DS_Store
 .idea/modules.xml
 .idea/misc.xml
 .idea/imageWebApp.iml
-database
+database/deeper
 static/clips
 static/images
