@@ -5,9 +5,9 @@ from imageLoadReadWrite import load_image_pool, load_image_scores, save_image_sc
 
 
 # Constants
-DEFAULT_SCORE = 1000  # Default score assigned to images if no score is available
-K_FACTOR = 40        # Weight factor determining the impact of each game on a png's score
-RATING_DIFF_FACTOR = 150  # Factor controlling the sensitivity of the Elo rating system to score differences
+DEFAULT_SCORE = 10000  # Default score assigned to images if no score is available
+K_FACTOR = 300        # Weight factor determining the impact of each game on a png's score
+RATING_DIFF_FACTOR = 500  # Factor controlling the sensitivity of the Elo rating system to score differences
 
 # List to keep track of available image files
 displayed_images = set()

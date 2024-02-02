@@ -12,7 +12,7 @@ PATH_TO_IMAGE_FOLDER = os.path.join("static", "images")
 PATH_TO_STATIC = ("static")
 IMAGE_FOLDER = ("images/")
 DATABASE_DIR = os.path.join(BASE_DIR, "database")
-IMAGE_EXTENSION = '.png'
+IMAGE_EXTENSION = ''
 
 
 def load_folders():
